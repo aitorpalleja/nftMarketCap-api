@@ -1,9 +1,9 @@
-import { LogType } from "./LogTypeEnum";
-import settings from '../../../settings.json'
+const LogType = require("./LogTypeEnum");
+const settings = require('../../../settings.json');
 const tracesController = require('../../modelsControllers/tracesModelController');
 const tracesModel = require('../../models/tracesModel');
 
-export class LogService {
+class LogService {
   constructor() {}
 
   log = (trace, logType) => {
@@ -36,3 +36,5 @@ export class LogService {
     await tracesController.deleteAllTraces();
   }
 }
+
+module.exports = LogService;

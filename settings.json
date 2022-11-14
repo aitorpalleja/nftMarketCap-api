@@ -1,0 +1,24 @@
+{
+    "Logs": {
+        "BBDDLogsEnable": false,
+        "ConsoleLogsEnable": true
+    },
+
+    "Collections": {
+        "MinVolumenExpiredCollections": 150
+    },
+
+    "Heartbeat": {
+        "Enable": true,
+        "IntervalTime": 3600000
+    },
+
+    "Params": {
+        "ParamsRequestTime": 43200000
+    },
+
+    "Cache": {
+        "CacheEnable": true
+        // Cache times
+    }
+}

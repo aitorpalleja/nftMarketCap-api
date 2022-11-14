@@ -1,8 +1,8 @@
-import settings from '../../settings.json'
-import { LogService } from "./LogService/LogService";
-import { LogType } from "./LogService/LogTypeEnum";
+const settings = require('../../settings.json');
+const LogService = require("./LogService/LogService");
+const LogType = require("./LogService/LogTypeEnum");
 
-export class HeartBeatService { 
+class HeartBeatService { 
     _logService;
     _hearBeatLog = "Hearbeat. Scrapper awake.";
 
@@ -27,3 +27,5 @@ export class HeartBeatService {
         this._logService.log(this._hearBeatLog, LogType.Information);
     }
 }
+
+module.exports = HeartBeatService;

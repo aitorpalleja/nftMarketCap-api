@@ -1,11 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const usersRoutes = require('../routes/users');
-import { LogService } from "./LogService/LogService";
-import { LogType } from "./LogService/LogTypeEnum";
+const collectionsRoutes = require('../routes/collectionsRoute');
+const LogService = require("./LogService/LogService");
+const LogType = require("./LogService/LogTypeEnum");
 
-export class ApiInitializerService {
+class ApiInitializerService {
     _logService = new LogService();
+
     constructor() {
         this.app = express();
         this.database = undefined;
@@ -59,7 +60,7 @@ export class ApiInitializerService {
             useNewUrlParser: true
         };
         
-        mongoose.connect(process.env.DATABASE_URL, connectionOptions);
+        mongoose.connect(process.env.MONGO_DB_URI, connectionOptions);
         this._database = mongoose.connection;
     }
 
@@ -85,6 +86,9 @@ export class ApiInitializerService {
     }
 
     _setRoutes = () => {
-        this.app.use(usersRoutes);
+        this.app.use(collectionsRoutes);
     }
 }
+
+
+module.exports = ApiInitializerService;

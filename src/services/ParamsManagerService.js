@@ -1,9 +1,9 @@
-import { LogService } from "./LogService/LogService";
-import { LogType } from "./LogService/LogTypeEnum";
-import settings from '../../settings.json';
+const LogService = require("./LogService/LogService");
+const LogType = require("./LogService/LogTypeEnum");
+const settings = require('../../settings.json');
 const paramsController = require('../modelsControllers/paramsModelController');
 
-export class ParamsManagerService {
+class ParamsManagerService {
     _logService;
 
     constructor() {
@@ -13,7 +13,7 @@ export class ParamsManagerService {
     getParameters = async() => {
         return new Promise(async (resolve, reject) => {
             await this._getAndSetParameters();
-            resolve(result);
+            resolve(true);
         });
     }
 
@@ -45,30 +45,6 @@ export class ParamsManagerService {
     }
 
     _setSettingParameters = (parameters) => {
-        settings.JobsManager.DeleteAllTracesJobEnable = parameters.find(param => param.Name === "JobsManager.DeleteAllTracesJobEnable") !== undefined ? 
-            parameters.find(param => param.Name === "JobsManager.DeleteAllTracesJobEnable").Value : 
-            settings.JobsManager.DeleteAllTracesJobEnable;
-
-        settings.JobsManager.DeleteAllTracesJobTime = parameters.find(param => param.Name === "JobsManager.DeleteAllTracesJobTime") !== undefined ? 
-            parameters.find(param => param.Name === "JobsManager.DeleteAllTracesJobTime").Value : 
-            settings.JobsManager.DeleteAllTracesJobTime;
-        
-        settings.JobsManager.GetAllCollectionsJobEnable = parameters.find(param => param.Name === "JobsManager.GetAllCollectionsJobEnable") !== undefined ? 
-            parameters.find(param => param.Name === "JobsManager.GetAllCollectionsJobEnable").Value : 
-            settings.JobsManager.GetAllCollectionsJobEnable;
-        
-        settings.JobsManager.GetAllCollectionsJobTime = parameters.find(param => param.Name === "JobsManager.GetAllCollectionsJobTime") !== undefined ? 
-            parameters.find(param => param.Name === "JobsManager.GetAllCollectionsJobTime").Value : 
-            settings.JobsManager.GetAllCollectionsJobTime;
-
-        settings.JobsManager.GetAllCollectionsStatsDataJobEnable = parameters.find(param => param.Name === "JobsManager.GetAllCollectionsStatsDataJobEnable") !== undefined ? 
-            parameters.find(param => param.Name === "JobsManager.GetAllCollectionsStatsDataJobEnable").Value : 
-            settings.JobsManager.GetAllCollectionsStatsDataJobEnable;
-
-        settings.JobsManager.GetAllCollectionsStatsDataJobTime = parameters.find(param => param.Name === "JobsManager.GetAllCollectionsStatsDataJobTime") !== undefined ? 
-            parameters.find(param => param.Name === "JobsManager.GetAllCollectionsStatsDataJobTime").Value : 
-            settings.JobsManager.GetAllCollectionsStatsDataJobTime;
-
         settings.Logs.BBDDLogsEnable = parameters.find(param => param.Name === "Logs.BBDDLogsEnable") !== undefined ? 
             parameters.find(param => param.Name === "Logs.BBDDLogsEnable").Value : 
             settings.Logs.BBDDLogsEnable;
@@ -81,14 +57,6 @@ export class ParamsManagerService {
             parameters.find(param => param.Name === "Collections.MinVolumenExpiredCollections").Value : 
             settings.Collections.MinVolumenExpiredCollections;
         
-        settings.Collections.CollectionLengthForUniqueHoldersAndSupplyDataScrap = parameters.find(param => param.Name === "Collections.CollectionLengthForUniqueHoldersAndSupplyDataScrap") !== undefined ? 
-            parameters.find(param => param.Name === "Collections.CollectionLengthForUniqueHoldersAndSupplyDataScrap").Value : 
-            settings.Collections.CollectionLengthForUniqueHoldersAndSupplyDataScrap;
-
-        settings.Collections.NumberOfCollectionsToScrapDetailedData = parameters.find(param => param.Name === "Collections.NumberOfCollectionsToScrapDetailedData") !== undefined ? 
-            parameters.find(param => param.Name === "Collections.NumberOfCollectionsToScrapDetailedData").Value : 
-            settings.Collections.NumberOfCollectionsToScrapDetailedData;
-
         settings.Heartbeat.Enable = parameters.find(param => param.Name === "Heartbeat.Enable") !== undefined ? 
             parameters.find(param => param.Name === "Heartbeat.Enable").Value : 
             settings.Heartbeat.Enable;
@@ -97,16 +65,10 @@ export class ParamsManagerService {
             parameters.find(param => param.Name === "Heartbeat.IntervalTime").Value : 
             settings.Heartbeat.IntervalTime;
         
-        settings.Puppeteer.Enable = parameters.find(param => param.Name === "Puppeteer.Enable") !== undefined ? 
-            parameters.find(param => param.Name === "Puppeteer.Enable").Value : 
-            settings.Puppeteer.Enable;
-
-        settings.Puppeteer.Headless = parameters.find(param => param.Name === "Puppeteer.Headless") !== undefined ? 
-            parameters.find(param => param.Name === "Puppeteer.Headless").Value : 
-            settings.Puppeteer.Headless;
-
         settings.Params.ParamsRequestTime = parameters.find(param => param.Name === "Params.ParamsRequestTime") !== undefined ? 
             parameters.find(param => param.Name === "Params.ParamsRequestTime").Value : 
             settings.Params.ParamsRequestTime;
     }
 }
+
+module.exports = ParamsManagerService;

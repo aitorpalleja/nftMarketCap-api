@@ -1,23 +1,23 @@
-import dotenv from 'dotenv'
-import { ParamsManagerService } from './services/ParamsManagerService';
-import { HeartBeatService } from './services/HeartbeatService';
-import { ApiInitializerService } from './services/ApiInitializerService';
-import { LogService } from "./services/LogService/LogService";
-import { LogType } from "./services/LogService/LogTypeEnum";
+require('dotenv').config();
+const ParamsManagerService  = require('./services/ParamsManagerService');
+const HeartBeatService = require('./services/HeartbeatService');
+const ApiInitializerService = require('./services/ApiInitializerService');
+const LogService = require("./services/LogService/LogService");
+const LogType = require("./services/LogService/LogTypeEnum");
 
-dotenv.config();
 this.paramsService = new ParamsManagerService();
 this.heartBeatSrvc = new HeartBeatService();
 this.apiInitializer = new ApiInitializerService();
 this.logService = new LogService();
 
-const _initializeServer = () => {
-  apiInitializer.setApiSettings();
-  apiInitializer.connectToDBAndControlConnection().then(async result => {
-    await paramsService.getParameters();
-    apiInitializer.setMiddlewares();
-    apiInitializer.setRoutes();
-    heartBeatSrvc.startHeartBeat();
+ _initializeServer = () => {
+  this.apiInitializer.setApiSettings();
+  this.apiInitializer.connectToDBAndControlConnection().then(async result => {
+    await this.paramsService.getParameters();
+    this.apiInitializer.setMiddlewares();
+    this.apiInitializer.setRoutes();
+    this.heartBeatSrvc.startHeartBeat();
+    this.logService.log("Api initialization finished. Api Ready", LogType.Information)
   }).catch(err => {
       
   });  
