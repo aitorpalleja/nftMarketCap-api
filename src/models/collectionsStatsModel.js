@@ -6,6 +6,11 @@ const collectionsStatsModel = new mongoose.Schema({
         length: 100,
         required: true
     },
+    Image: {
+        type: String,
+        length: 2000,
+        required: false
+    },
     FloorPrice: {
         type: mongoose.Types.Decimal128,
         required: false

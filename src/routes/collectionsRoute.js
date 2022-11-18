@@ -6,8 +6,14 @@ const collectionsController = require('../controllers/collectionsController');
 
 this._encryptService = new EncryptionService();
 
-router.get('/getAllCollections', collectionsController.getAllCollections);
-
+router.get('/getHighlightedCollections', collectionsController.getHighlightedCollections);
+router.get('/getTopCollections', collectionsController.getTopCollections);
+router.get('/getAllCollectionsAllData', collectionsController.getAllCollectionsAllData);
+router.get('/getCollectionAllData', collectionsController.getCollectionAllData);
+router.get('/getAllCollectionsInfoData', collectionsController.getAllCollectionsInfoData);
+router.get('/getCollectionInfoData/:symbol', collectionsController.getCollectionInfoData);
+router.get('/getAllCollectionsStatsData', collectionsController.getAllCollectionsStatsData);
+router.get('/getCollectionStatsData/:symbol', collectionsController.getCollectionStatsData);
 
 router.get('/prueba', async (req, res) => {
     try {

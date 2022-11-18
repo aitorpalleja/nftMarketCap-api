@@ -6,6 +6,17 @@ const collectionsStatsModel = require('../models/collectionsStatsModel');
 
 this._logService = new LogService();
 
+exports.getCollection = async (symbol) => {
+    let collection = null;
+    try {
+        collection = await collectionModel.find({Symbol: symbol});
+    } catch (error) {
+        this._logService.log("Error de BBDD, en getCollection. ERROR: " + error, LogType.Error);
+    }
+
+    return collection;
+}
+
 exports.getAllCollections = async () => {
     let allCollections = null;
     try {
@@ -39,6 +50,16 @@ exports.getCollectionsStatsWithMinVolumen = async () => {
     return collectionsStats;
 }
 
+exports.getCollectionStats = async (symbol) => {
+    let collectionStats = null;
+    try {
+        collectionStats = await collectionsStatsModel.find({Symbol: symbol});
+    } catch (error) {
+        this._logService.log("Error de BBDD, en getCollectionStats. ERROR: " + error, LogType.Error);
+    }
+
+    return collectionStats;
+}
 
 exports.getAllCollectionsStats = async () => {
     let allCollectionsStats = null;
