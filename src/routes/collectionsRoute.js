@@ -15,13 +15,4 @@ router.get('/getCollectionInfoData/:symbol', collectionsController.getCollection
 router.get('/getAllCollectionsStatsData', collectionsController.getAllCollectionsStatsData);
 router.get('/getCollectionStatsData/:symbol', collectionsController.getCollectionStatsData);
 
-router.get('/prueba', async (req, res) => {
-    try {
-        res.json("");
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-
 module.exports = router;
