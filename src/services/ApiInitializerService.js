@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const settings = require('../../settings.json');
 const collectionsRoutes = require('../routes/collectionsRoute');
 const LogService = require("./LogService/LogService");
 const LogType = require("./LogService/LogTypeEnum");
@@ -36,7 +37,9 @@ class ApiInitializerService {
     }
 
     setMiddlewares = () => {
-        this._setSecurityControls();
+        if (!settings.Debug) {
+            this._setSecurityControls();
+        }
     }
 
     _setContentType = () => {

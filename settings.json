@@ -1,4 +1,5 @@
 {
+    "Debug": true,
     "Logs": {
         "BBDDLogsEnable": false,
         "ConsoleLogsEnable": true
@@ -19,6 +20,5 @@
 
     "Cache": {
         "CacheEnable": true
-        // Cache times
     }
 }

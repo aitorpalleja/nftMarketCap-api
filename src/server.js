@@ -17,9 +17,9 @@ this.logService = new LogService();
     this.apiInitializer.setMiddlewares();
     this.apiInitializer.setRoutes();
     this.heartBeatSrvc.startHeartBeat();
-    this.logService.log("Api initialization finished. Api Ready", LogType.Information)
+    this.logService.log("Api initialization finished. Api Ready", LogType.Information);
   }).catch(err => {
-      
+    this.logService.log("FATAL ERROR Api initialization failed. Api NOT Ready", LogType.Error);
   });  
 }
 
