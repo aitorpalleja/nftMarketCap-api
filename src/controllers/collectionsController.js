@@ -16,7 +16,7 @@ exports.getHighlightedCollections = async(req, res) => {
 
 exports.getTopCollections = async(req, res) => {
     try {
-        let topCollections = [];
+        let topCollections = await collectionsModelController.getAllTopCollectionsStats();
         res.status(200).json(topCollections);
     } catch (error) {
         res.status(500).json({ message: "Internal Server Error at getTopCollections", ResponseStatus: 500 });

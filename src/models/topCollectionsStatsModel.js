@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const collectionsStatsModel = new mongoose.Schema({
+const topCollectionsStatsModel = new mongoose.Schema({
     Symbol: {
         type: String,
         length: 100,
@@ -39,9 +39,13 @@ const collectionsStatsModel = new mongoose.Schema({
     UniqueHolders: {
         type: mongoose.Types.Decimal128,
         required: false
-    }
-}, { collection: 'CollectionsStats' });
-
+    },
+    WindowTime: {
+        type: String,
+        length: 3,
+        required: false
+    },
+}, { collection: 'TopCollectionsStats' });
 
 const specificDataBase = mongoose.connection.useDb('test'); 
-module.exports = specificDataBase.model('CollectionsStats', collectionsStatsModel);
+module.exports = specificDataBase.model('TopCollectionsStats', topCollectionsStatsModel);

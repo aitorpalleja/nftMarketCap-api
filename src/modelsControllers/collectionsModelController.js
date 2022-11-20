@@ -3,6 +3,7 @@ const LogType = require("../services/LogService/LogTypeEnum");
 const settings = require('../../settings.json');
 const collectionModel = require('../models/collectionsModel');
 const collectionsStatsModel = require('../models/collectionsStatsModel');
+const topCollectionsStatsModel = require('../models/topCollectionsStatsModel');
 
 this._logService = new LogService();
 
@@ -70,4 +71,26 @@ exports.getAllCollectionsStats = async () => {
     }
 
     return allCollectionsStats;
+}
+
+exports.getTopCollectionStats = async (symbol) => {
+    let topCcollectionStats = null;
+    try {
+        topCcollectionStats = await topCollectionsStatsModel.find({Symbol: symbol});
+    } catch (error) {
+        this._logService.log("Error de BBDD, en getTopCollectionStats. ERROR: " + error, LogType.Error);
+    }
+
+    return topCcollectionStats;
+}
+
+exports.getAllTopCollectionsStats = async () => {
+    let allTopCollectionsStats = null;
+    try {
+        allTopCollectionsStats = await topCollectionsStatsModel.find();
+    } catch (error) {
+        this._logService.log("Error de BBDD, en getAllTopCollectionsStats. ERROR: " + error, LogType.Error);
+    }
+
+    return allTopCollectionsStats;
 }
